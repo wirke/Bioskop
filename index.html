@@ -2,21 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="stylesheet" href="/style.css">
     <title>Test</title>
 </head>
 <body>
-    <div id="app">
-        {{message}}
-    </div>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+      </script>
+      
+      <div id="app">{{ message }}</div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                message: "Hello"
-            }
-        })
-    </script>
+      <script type="module">
+        import { createApp } from 'vue'
+        import MyComponent from './komponenta.js'
+      
+        createApp(MyComponent).mount('#app')
+      </script>
 </body>
 </html>
