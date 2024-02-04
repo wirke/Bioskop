@@ -1,26 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="stylesheet" href="/style.css">
-    <title>Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odabir sedišta u bioskopu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <script type="importmap">
-        {
-          "imports": {
-            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-          }
-        }
-      </script>
-      
-      <div id="app">{{ message }}</div>
 
-      <script type="module">
-        import { createApp } from 'vue'
-        import MyComponent from './komponenta.js'
-      
-        createApp(MyComponent).mount('#app')
-      </script>
+<div class="">
+    <div id="app">
+      <div class="seat-container" v-for="seat in seats" :key="seat.id">
+        <i :class="['fa', 'fa-couch', { 'selected': seat.selected, 'disabled': selectedSeats.length >= 5 && !seat.selected }]" @mouseover="showSeatNumber(seat.id)" @mouseleave="hideSeatNumber(seat.id)" @click="toggleSeat(seat)"></i>
+        <label class="seat-label">{{ seat.hoverId === seat.id ? seat.id : '' }}</label>
+      </div>
+      <p class="selected-seats">Odabrana sedišta: {{ selectedSeats.join(', ') }}</p>
+      <p> {{ message }} </p>
+      <button @click="resetSeats">Resetiraj selekciju</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/jquery.js"></script>
 </body>
 </html>
