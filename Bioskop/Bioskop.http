@@ -1,6 +1,0 @@
-@Bioskop_HostAddress = http://localhost:5064
-
-GET {{Bioskop_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
