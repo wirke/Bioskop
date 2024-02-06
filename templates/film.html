@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalji filma</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Detalji filma</h1>
+        <h2>{{ film.naziv }}</h2>
+        <p>Opis: {{ film.opis }}</p>
+        <p>Godina: {{ film.godina }}</p>
+        <p>Zanr: {{ film.zanr }}</p>
+
+        <h3>Prikazi:</h3>
+        <ul>
+            <li v-for="prikaz in prikazi" :key="prikaz.id">
+                {{ prikaz.vremePrikaza }} - Prostorija: {{ prikaz.id_prostorija }}, Cena: {{ prikaz.cenaSedista }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                film: {},
+                prikazi: []
+            },
+            mounted() {
+                const filmId = window.location.pathname.split('/').pop();
+
+                fetch(`https://bioskop-46a84.firebaseio.com/film/${filmId}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.film = data;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching film:', error);
+                    });
+
+                fetch('https://bioskop-46a84.firebaseio.com/prikaz.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.prikazi = Object.values(data).filter(prikaz => prikaz.id_film === filmId);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching prikazi:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

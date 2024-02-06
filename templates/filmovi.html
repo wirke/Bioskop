@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmovi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Filmovi</h1>
+        <div v-for="film in filmovi" :key="film.id">
+            <h2>{{ film.naziv }}</h2>
+            <p>Opis: {{ film.opis }}</p>
+            <p>Godina: {{ film.godina }}</p>
+            <p>Zanr: {{ film.zanr }}</p>
+            <a :href="'/film/' + film.id">Prikazi detalje</a>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                filmovi: []
+            },
+            mounted() {
+                fetch('https://bioskop-46a84.firebaseio.com/film.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.filmovi = Object.values(data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching filmovi:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
