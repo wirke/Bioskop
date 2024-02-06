@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--Generator: Xara Designer (www.xara.com), SVG filter version: 6.6.0.9-->
+<svg fill="none" fill-rule="evenodd" stroke="black" stroke-width="0.501" stroke-linejoin="bevel" stroke-miterlimit="10" font-family="Times New Roman" font-size="16" style="font-variant-ligatures:none" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="27.277pt" height="27.124pt" viewBox="179.76 -131.102 27.277 27.124">
+ <defs>
+  <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?family=Open Sans:400,600');</style>
+ </defs>
+ <g id="Layer 1" transform="scale(1 -1)">
+  <g id="Group" stroke-linejoin="miter" stroke="none" fill="#f1664a">
+   <path d="M 193.684,125.548 L 193.672,105.434 L 191.833,104.024 L 180.502,106.691 L 180.431,130.324 L 188.395,129.08 L 191.46,128.359 L 193.684,125.548 Z" marker-start="none" marker-end="none"/>
+   <g id="Group_1">
+    <g id="Group_2">
+     <rect x="179.761" y="129.078" width="20.586" height="2.025" rx="1.009" ry="1.009"/>
+     <rect x="179.761" y="106.655" width="20.586" height="2.025" rx="1.009" ry="1.009"/>
+     <rect x="179.76" y="106.655" width="2.025" height="24.447" rx="12.1805747206704" ry="12.1805747206704"/>
+     <rect x="198.322" y="122.532" width="2.025" height="8.571" rx="4.27063477653631" ry="4.27063477653631"/>
+     <rect x="198.322" y="106.664" width="2.025" height="8.571" rx="4.27063477653631" ry="4.27063477653631"/>
+    </g>
+    <ellipse rx="2.874" ry="2.874" transform="translate(190.81 125.557) rotate(167.424)"/>
+   </g>
+   <g id="Group_3">
+    <g id="Group_4">
+     <rect x="195.809" y="117.883" width="11.228" height="2.025" rx="1.009" ry="1.009"/>
+     <g id="Group_5">
+      <rect x="-1.012" y="-3.195" width="2.025" height="6.39" rx="1.00942159478499" ry="1.00942159478499" transform="translate(204.48 117.349) rotate(-45)"/>
+      <rect x="-1.012" y="-3.195" width="2.025" height="6.39" rx="1.00942159478499" ry="1.00942159478499" transform="translate(204.474 120.442) rotate(45)"/>
+     </g>
+    </g>
+    <ellipse rx="1.474" ry="1.474" transform="translate(192.199 105.451) rotate(167.425)"/>
+   </g>
+  </g>
+ </g>
+</svg>
