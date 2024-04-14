@@ -1,18 +1,27 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const app = express()
-const uri = 'mongodb+srv://wiriyevich:cavuh9UCvo10rbvI@cluster0.nzgsmre.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const express = require('express');
+const mongoose = require('mongoose');
+const userRoutes = require('./routes/userRoutes');
+const movieRoutes = require('./routes/movieRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
-async function connect(){
-    try{
-        await mongoose.connect(uri)
-        console.log("Mongo povezan")
-    }
-    catch (error){
-        console.error(error)
-    }
-}
+const app = express();
+const PORT = process.env.PORT || 8000;
+const MONGODB_URI = 'mongodb://localhost:27017/movie_booking_app';
 
-connect()
+app.use(express.json());
 
-app.listen(8000, () => {console.log("Server slusa na 8000")})
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB connected successfully');
+    })
+    .catch(err => {
+        console.error('MongoDB connection error:', err);
+    });
+
+app.use('/api/users', userRoutes);
+app.use('/api/movies', movieRoutes);
+app.use('/api/bookings', bookingRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
