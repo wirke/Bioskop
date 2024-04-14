@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
-const movieRoutes = require('./routes/movieRoutes');
-const bookingRoutes = require('./routes/bookingRoutes');
+const Korisnik = require('./routes/Korisnik');
+const Film = require('./routes/Film');
+const Rezervacija = require('./routes/Rezervacija');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,9 +18,9 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
         console.error('MongoDB connection error:', err);
     });
 
-app.use('/api/users', userRoutes);
-app.use('/api/movies', movieRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use('/api/users', Korisnik);
+app.use('/api/movies', Film);
+app.use('/api/bookings', Rezervacija);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

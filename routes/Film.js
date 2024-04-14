@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const movieController = require('../controllers/movieController');
+const movieController = require('../controllers/Film');
 
 router.post('/movies', movieController.createMovie);
 router.get('/movies/:id', movieController.getMovieById);
