@@ -6,7 +6,7 @@ const Rezervacija = require('./routes/Rezervacija');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-const MONGODB_URI = 'mongodb://localhost:27017/movie_booking_app';
+const MONGODB_URI = 'mongodb+srv://wiriyevich:cavuh9UCvo10rbvI@cluster0.nzgsmre.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 app.use(express.json());
 
