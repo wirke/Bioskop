@@ -7,6 +7,6 @@
 ##### cd backend
 ##### node server
 
-### Vue.js za frontend:
+### Angular za frontend:
 ##### cd frontend
 ##### ng serve
