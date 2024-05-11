@@ -1,3 +1,6 @@
+# Projekat Bioskop
+## Radjen u MEAN STACK
+
 ### Node.js + Express.js + MongoDB za backend:
 ##### cd backend
 ##### npm i (inicijalizacija paketa)
