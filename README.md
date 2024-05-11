@@ -1,12 +1,9 @@
-# Projekat Bioskop
-
-### Inicijalna instalacija paketa:
-#####   npm i
-
-### Node.js + MongoDB za backend:
-#####   cd backend
-#####   node server
+### Node.js + Express.js + MongoDB za backend:
+##### cd backend
+##### npm i (inicijalizacija paketa)
+##### npm start
 
 ### Angular za frontend:
-#####   cd frontend
-#####   ng serve
+##### cd frontend
+##### npm i (inicijalizacija paketa)
+##### ng serve
