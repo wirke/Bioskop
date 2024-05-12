@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
 
+// Ruta za dobijanje svih filmova
+router.get('/', async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    res.json({movies: movies, request: req});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Ruta za dodavanje filma
 router.post('/', async (req, res) => {
   try {
@@ -79,7 +89,7 @@ router.delete('/:id/screenings/:screeningId', async (req, res) => {
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
     }
-    movie.screenings.pull(req.params.screeningId);
+    movie.screenings.pull({ _id: req.params.screeningId }); // Ovde koristimo eksplicitno _id polje za identifikaciju emitovanja
     await movie.save();
     res.json({ message: "Screening deleted successfully" });
   } catch (error) {
