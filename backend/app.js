@@ -1,13 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const connectToDatabase = require('./db');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
+
+connectToDatabase().then((database) => {
+  app.listen(3000, () => console.log("Server connected on 3000"));
+}).catch((error) => {
+  console.error("Error connecting to database:", error);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
