@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
 
+// Ruta za dobijanje filma po ID-u
+router.get('/:id', async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    res.json(movie);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Ruta za dobijanje svih filmova
 router.get('/', async (req, res) => {
   try {
