@@ -4,7 +4,7 @@
 ### Node.js + Express.js + MongoDB za backend:
 ##### cd backend
 ##### npm i (inicijalizacija paketa)
-##### npm start
+##### node app (nodemon app - debugging )
 
 ### Angular za frontend:
 ##### cd frontend

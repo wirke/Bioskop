@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+  _id: {
+    type: String, 
+    required: true
+  },
   title: {
     type: String,
     required: true
@@ -11,7 +14,7 @@ const movieSchema = new mongoose.Schema({
     required: true
   },
   genre: String,
-  imageUrl: String,
+  image_url: String,
   releaseDate: Date,
   actors: [{
     name: String,
@@ -24,6 +27,4 @@ const movieSchema = new mongoose.Schema({
   }]
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
-
-module.exports = Movie;
+module.exports = mongoose.model('Movie', movieSchema);
