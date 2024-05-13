@@ -1,49 +1,36 @@
-const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const connectToDatabase = require('./db');
-
-const moviesRouter = require('./routes/movies');
+const mongoose = require('mongoose');
+const movieRouter = require('./routes/movies');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Povezivanje na bazu podataka prilikom pokretanja servera
-connectToDatabase()
-  .then((database) => {
-    console.log("Connected to database");
-    // Pokretanje servera nakon uspešnog povezivanja na bazu
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((error) => {
-    console.error("Error connecting to database:", error);
-    process.exit(1); // Zatvori aplikaciju ako ne možeš da se povežeš na bazu
-  });
+const uri = "mongodb+srv://wiriyevich:cavuh9UCvo10rbvI@cluster0.nzgsmre.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+mongoose.connect(uri, {
+  dbName: 'Bioskop',
+})
+.then(() => {
+  console.log('Connected to MongoDB');
+})
+.catch((err) => {
+  console.error('Error connecting to MongoDB:', err.message);
+  process.exit(1);
+});
 
-app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/movies', movieRouter);
 
-// Rute za aplikaciju
-app.use('/api/movies', moviesRouter);
-
-// Uhvati 404 grešku i prosledi je error handler-u
-app.use(function(req, res, next) {
-  res.status(404).json({ message: "Not found" });
-});
-
-// Error handler
 app.use(function(err, req, res, next) {
-  console.error(err);
-  res.status(err.status || 500).json({ message: err.message });
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
 });
 
-module.exports = app;
+const server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+process.on('unhandledRejection', (err, promise) => {
+  console.error(`Error: ${err.message}`);
+  server.close(() => process.exit(1));
+});
