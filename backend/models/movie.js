@@ -25,6 +25,6 @@ const movieSchema = new mongoose.Schema({
     time: String,
     room: String
   }]
-});
+}, { collection: 'Film' });
 
 module.exports = mongoose.model('Movie', movieSchema);

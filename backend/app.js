@@ -7,20 +7,16 @@ const PORT = process.env.PORT || 3000;
 
 const uri = "mongodb+srv://wiriyevich:cavuh9UCvo10rbvI@cluster0.nzgsmre.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-};
-
-mongoose.connect(uri, mongooseOptions)
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-    process.exit(1);
-  });
-
+mongoose.connect(uri, {
+  dbName: 'Bioskop',
+})
+.then(() => {
+  console.log('Connected to MongoDB');
+})
+.catch((err) => {
+  console.error('Error connecting to MongoDB:', err.message);
+  process.exit(1);
+});
 
 app.use(express.json());
 app.use('/movies', movieRouter);
