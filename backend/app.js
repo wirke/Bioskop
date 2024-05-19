@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const movieRouter = require('./routes/movies');
+const userRouter = require('./routes/users');
+const bookingRouter = require('./routes/bookings');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +22,8 @@ mongoose.connect(uri, {
 
 app.use(express.json());
 app.use('/movies', movieRouter);
+app.use('/users', userRouter);
+app.use('booking', bookingRouter);
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
