@@ -23,7 +23,10 @@ const movieSchema = new mongoose.Schema({
   screenings: [{
     date: Date,
     time: String,
-    room: String
+    room: String,
+    reserved_seats: [{
+      seat: String,
+    }],
   }]
 }, { collection: 'Film' });
 
