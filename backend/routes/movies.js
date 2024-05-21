@@ -113,6 +113,13 @@ router.post('/:id/screenings', async (req, res) => {
     const movie = await Movie.findById(req.params.id);
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
+// Pretraga filmova po nazivu
+router.get('/search/title', async (req, res) => {
+    try {
+        const movies = await Movie.find({ title: { $regex: req.query.title, $options: 'i' } });
+        res.json(movies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
     movie.screenings.push(req.body);
     await movie.save();
