@@ -139,6 +139,13 @@ router.put('/:id/screenings/:screeningId', async (req, res) => {
     const screening = movie.screenings.id(req.params.screeningId);
     if (!screening) {
       return res.status(404).json({ message: "Screening not found" });
+// Pretraga filmova po žanru
+router.get('/search/genre', async (req, res) => {
+    try {
+        const movies = await Movie.find({ genre: { $regex: req.query.genre, $options: 'i' } });
+        res.json(movies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
     screening.set(req.body);
     await movie.save();
