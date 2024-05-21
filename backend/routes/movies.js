@@ -161,6 +161,18 @@ router.delete('/:id/screenings/:screeningId', async (req, res) => {
     const movie = await Movie.findById(req.params.id);
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
+// Dodavanje emitovanja za film
+router.post('/:id/screenings', protect, async (req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        movie.screenings.push(req.body);
+        await movie.save();
+        res.status(201).json(movie);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
     movie.screenings.pull({ _id: req.params.screeningId });
     await movie.save();
