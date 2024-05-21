@@ -50,6 +50,15 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+// Dodavanje filma
+router.post('/', protect, async (req, res) => {
+    try {
+        const movie = new Movie(req.body);
+        await movie.save();
+        res.status(201).json(movie);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 // Ruta za izmenu filma
