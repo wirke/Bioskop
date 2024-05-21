@@ -6,6 +6,16 @@ const Movie = require('../models/movie');
 const { protect } = require('../middleware/authMiddleware');
 
 // Ruta za pregled svih rezervacija
+// Pregled zauzetih sedišta za emitovanje filma
+router.get('/screening/:id_screening/occupied-seats', async (req, res) => {
+    try {
+        const bookings = await Booking.find({ id_screening: req.params.id_screening });
+        const occupiedSeats = bookings.flatMap(booking => booking.reserved_seats.map(seat => seat.seat));
+        res.json({ occupiedSeats });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // Ruta za pregled svih rezervacija za film
 
