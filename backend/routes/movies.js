@@ -67,6 +67,16 @@ router.put('/:id', async (req, res) => {
     const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
+// Izmena filma
+router.put('/:id', protect, async (req, res) => {
+    try {
+        const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        res.json(movie);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
     res.json(movie);
   } catch (error) {
