@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
+const { protect } = require('../middleware/authMiddleware');
 
 // Ruta za dobijanje filma po ID-u
 router.get('/:id', async (req, res) => {
@@ -130,4 +131,4 @@ router.get('/search/genre', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = router;module.exports = router;
