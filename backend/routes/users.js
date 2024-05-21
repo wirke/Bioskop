@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require('../models/user');
+const { protect } = require('../middleware/authMiddleware');
 
 // Ruta za dobijanje korisnika po ID-u
 router.get('/:id', async (req, res) =>{
