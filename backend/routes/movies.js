@@ -90,6 +90,16 @@ router.delete('/:id', async (req, res) => {
     const movie = await Movie.findByIdAndDelete(req.params.id);
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
+// Brisanje filma
+router.delete('/:id', protect, async (req, res) => {
+    try {
+        const movie = await Movie.findByIdAndDelete(req.params.id);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        res.json({ message: 'Movie deleted successfully' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
     res.json({ message: "Movie deleted successfully" });
   } catch (error) {
