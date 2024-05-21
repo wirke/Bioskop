@@ -11,6 +11,19 @@ router.get('/:id', async (req, res) =>{
     const user = await User.findById(req.params.id);
     if(!user){
       return res.status(404).json({message: "User not found"});
+// Pregled profila korisnika
+router.get('/profile', protect, async (req, res) => {
+    res.json(req.user);
+});
+
+// Kreiranje korisnika
+router.post('/', async (req, res) => {
+    try {
+        const user = new User(req.body);
+        await user.save();
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
     res.json(user);
     }catch(error){
