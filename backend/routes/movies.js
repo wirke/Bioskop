@@ -190,6 +190,23 @@ router.get('/search/title', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+// Izmena emitovanja filma
+router.put('/:id/screenings/:screeningId', protect, async (req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        const screening = movie.screenings.id(req.params.screeningId);
+        if (!screening) {
+            return res.status(404).json({ message: 'Screening not found' });
+        }
+        screening.set(req.body);
+        await movie.save();
+        res.json(movie);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 // Ruta za pretragu filmova po žanru
