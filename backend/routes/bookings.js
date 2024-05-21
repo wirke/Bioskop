@@ -71,4 +71,4 @@ router.get('/movie/:id_movie', async (req, res) => {
     }
 });
 
-module.exports   = router;
+module.exports   = router;module.exports = router;
