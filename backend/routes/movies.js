@@ -26,6 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Ruta za dobijanje svih filmova
+// Pregled svih filmova
 router.get('/', async (req, res) => {
   try {
     const movies = await Movie.find();
@@ -33,6 +34,12 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+    try {
+        const movies = await Movie.find();
+        res.json(movies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // Ruta za dodavanje filma
