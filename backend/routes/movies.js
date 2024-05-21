@@ -217,6 +217,23 @@ router.get('/search/genre', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+// Brisanje emitovanja filma
+router.delete('/:id/screenings/:screeningId', protect, async (req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        const screening = movie.screenings.id(req.params.screeningId);
+        if (!screening) {
+            return res.status(404).json({ message: 'Screening not found' });
+        }
+        screening.remove();
+        await movie.save();
+        res.json({ message: 'Screening deleted successfully' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 module.exports = router;module.exports = router;
