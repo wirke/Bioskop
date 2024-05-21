@@ -51,5 +51,24 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Pregled svih rezervacija za korisnika
+router.get('/user/:id_user', async (req, res) => {
+    try {
+        const bookings = await Booking.find({ id_user: req.params.id_user });
+        res.json(bookings);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Pregled svih rezervacija za film
+router.get('/movie/:id_movie', async (req, res) => {
+    try {
+        const bookings = await Booking.find({ id_movie: req.params.id_movie });
+        res.json(bookings);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports   = router;
