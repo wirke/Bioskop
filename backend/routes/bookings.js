@@ -18,6 +18,9 @@ router.get('/screening/:id_screening/occupied-seats', async (req, res) => {
 });
 
 // Ruta za pregled svih rezervacija za film
+// Rezervacija karata za više sedišta
+router.post('/', async (req, res) => {
+    const { id_user, id_movie, id_screening, reserved_seats } = req.body;
 
 // Ruta za pregled svih rezervacija od korisnika
 
