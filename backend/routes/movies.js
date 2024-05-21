@@ -4,11 +4,20 @@ const Movie = require('../models/movie');
 const { protect } = require('../middleware/authMiddleware');
 
 // Ruta za dobijanje filma po ID-u
+// Pregled filma po ID-u
 router.get('/:id', async (req, res) => {
   try {
     const movie = await Movie.findById(req.params.id);
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
+    try {
+        const movie = await Movie.findById(req.params.id);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+        res.json(movie);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
     res.json(movie);
   } catch (error) {
