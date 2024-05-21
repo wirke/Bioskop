@@ -1,6 +1,9 @@
 const express = require("express");
+const express = require('express');
 const router = express.Router();
 const Booking = require('../models/booking');
+const Movie = require('../models/movie');
+const { protect } = require('../middleware/authMiddleware');
 
 // Ruta za pregled svih rezervacija
 
