@@ -1,0 +1,95 @@
+movie{
+	id,
+	title,
+	about,
+	director,
+	actors[],
+	release_date,
+	screenings {
+		id,
+		date,
+		time,
+		reserved_seats[]
+	},
+}
+
+user{
+	id,
+	username,
+	email,
+	password,
+	bookings{
+		id_movie,
+		id_screening,
+		rating,
+		booked_seats[],
+	},
+}
+
+############################################
+
+movie{
+	id,
+	title,
+	about,
+	director,
+	actors[],
+	release_date,
+	screenings {
+		id,
+		date,
+		time,
+		reserved_seats[]
+	},
+}
+
+user{
+	id,
+	username,
+	email,
+	password,
+}
+
+bookings{
+	id,
+	id_user,
+	id_movie,
+	id_screening,
+	rating,
+	booked_seats[],
+}
+
+############################################
+
+movie (
+    id: INT (Primary Key),
+    title: VARCHAR,
+    about: TEXT,
+    director: VARCHAR,
+	actors: TEXT,
+    release_date: DATE
+),
+
+screening (
+    id: INT (Primary Key),
+    movie_id: INT (Foreign Key),
+    date: DATE,
+    time: TIME,
+    room: VARCHAR,
+    reserved_seats: TEXT
+),
+
+user (
+    id: INT (Primary Key),
+    username: VARCHAR,
+    email: VARCHAR,
+    password: VARCHAR
+),
+
+bookings (
+	id: INT (Primary Key)
+    user_id: INT (Foreign Key),
+    movie_id: INT (Foreign Key),
+    screening_id: INT (Foreign Key),
+    rating: INT
+),

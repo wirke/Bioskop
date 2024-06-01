@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
 const { protect } = require('../middleware/authMiddleware');
+const { isLoggedIn } = require('../middleware/isLoggedIn');
 
 // Pregled filma po ID-u
 router.get('/:id', async (req, res) => {
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // Dodavanje filma
-router.post('/', protect, async (req, res) => {
+router.post('/', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = new Movie(req.body);
         await movie.save();
@@ -38,7 +39,7 @@ router.post('/', protect, async (req, res) => {
 });
 
 // Izmena filma
-router.put('/:id', protect, async (req, res) => {
+router.put('/:id', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!movie) {
@@ -51,7 +52,7 @@ router.put('/:id', protect, async (req, res) => {
 });
 
 // Brisanje filma
-router.delete('/:id', protect, async (req, res) => {
+router.delete('/:id', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = await Movie.findByIdAndDelete(req.params.id);
         if (!movie) {
@@ -84,7 +85,7 @@ router.get('/search/genre', async (req, res) => {
 });
 
 // Dodavanje emitovanja za film
-router.post('/:id/screenings', protect, async (req, res) => {
+router.post('/:id/screenings', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
         if (!movie) {
@@ -99,7 +100,7 @@ router.post('/:id/screenings', protect, async (req, res) => {
 });
 
 // Izmena emitovanja filma
-router.put('/:id/screenings/:screeningId', protect, async (req, res) => {
+router.put('/:id/screenings/:screeningId', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
         if (!movie) {
@@ -118,7 +119,7 @@ router.put('/:id/screenings/:screeningId', protect, async (req, res) => {
 });
 
 // Brisanje emitovanja filma
-router.delete('/:id/screenings/:screeningId', protect, async (req, res) => {
+router.delete('/:id/screenings/:screeningId', protect, isLoggedIn, async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
         if (!movie) {
