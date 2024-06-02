@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const { protect } = require('../middleware/authMiddleware');
+const { isLoggedIn } = require('../middleware/isLoggedIn');
 
 // Pregled profila korisnika
-router.get('/profile', protect, async (req, res) => {
+router.get('/profile', protect, isLoggedIn, async (req, res) => {
     res.json(req.user);
 });
 
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
 });
 
 // Pregled korisnika po ID-u
-router.get('/:id', async (req, res) => {
+router.get('/:id', isLoggedIn, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -33,7 +34,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Pregled svih korisnika
-router.get('/', protect, async (req, res) => {
+router.get('/', protect, isLoggedIn, async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
@@ -43,7 +44,7 @@ router.get('/', protect, async (req, res) => {
 });
 
 // Brisanje korisnika
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isLoggedIn, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) {
@@ -56,7 +57,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Izmena korisnika
-router.put('/:id', async (req, res) => {
+router.put('/:id', isLoggedIn, async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!user) {
