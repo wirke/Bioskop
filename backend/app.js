@@ -3,10 +3,12 @@ const session = require('express-session')
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
+const cors = require('cors')
 
 const movieRouter = require('./routes/movies');
 const userRouter = require('./routes/users');
 const bookingRouter = require('./routes/bookings');
+const authRouter = require('./routes/auth');
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ mongoose.connect(uri, {
   process.exit(1);
 });
 
+app.use(cors)
+
 app.use(session({
   secret: process.env.SESSION_SECRET || 'UWDgMIpchpPKEno6CHE3Sz+VNkahW88I9laKOd/ZrBE=',
   resave: false,
@@ -35,6 +39,7 @@ app.use(express.json());
 app.use('/movies', movieRouter);
 app.use('/users', userRouter);
 app.use('/bookings', bookingRouter);
+app.use('/auth', authRouter);
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
