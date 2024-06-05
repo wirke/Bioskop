@@ -52,17 +52,13 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-const logoutUser = (req, res) => {
+router.post('/logout', async (req, res) => {
     try {
         res.clearCookie('jwt');
         res.json({ message: 'User logged out' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+});
 
-module.exports = {
-    registerUser,
-    loginUser,
-    logoutUser,
-};
+module.exports = router;
