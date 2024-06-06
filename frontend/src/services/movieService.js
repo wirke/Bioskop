@@ -13,37 +13,91 @@ export const getAllMovies = async () => {
 };
 
 export const getMovieById = async (id) => {
-  return await axios.get(`${API_URL}/${id}`);
+  try {
+    const response = await axios.get(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const createMovie = async (movieData) => {
-  return await axios.post(API_URL, movieData);
+  try {
+    const response = await axios.post(API_URL, movieData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const updateMovie = async (id, movieData) => {
-  return await axios.put(`${API_URL}/${id}`, movieData);
+  try {
+    const response = await axios.put(`${API_URL}/${id}`, movieData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw(error);
+  }
 };
 
 export const deleteMovie = async (id) => {
-  return await axios.delete(`${API_URL}/${id}`);
+  try {
+    const response = await axios.delete(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw(error);
+  }
 };
 
 export const searchMoviesByTitle = async (title) => {
-  return await axios.get(`${API_URL}/search/title?title=${title}`);
+  try {
+    const response = await axios.get(`${API_URL}/search/title?title=${title}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw(error);
+  }
 };
 
 export const searchMoviesByGenre = async (genre) => {
-  return await axios.get(`${API_URL}/search/genre?genre=${genre}`);
+  try {
+    const response = await axios.get(`${API_URL}/search/genre?genre=${genre}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw(error);
+  }
 };
 
 export const addScreening = async (movieId, screeningData) => {
-  return await axios.post(`${API_URL}/${movieId}/screenings`, screeningData);
+  try {
+    const response = await axios.post(`${API_URL}/${movieId}/screenings`, screeningData);
+    return response.data;
+  } catch(error){
+    console.error(error);
+    throw(error);
+  }
 };
 
 export const updateScreening = async (movieId, screeningId, screeningData) => {
-  return await axios.put(`${API_URL}/${movieId}/screenings/${screeningId}`, screeningData);
+  try {
+    const response = await axios.put(`${API_URL}/${movieId}/screenings/${screeningId}`, screeningData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw (error);
+  }
 };
 
 export const deleteScreening = async (movieId, screeningId) => {
-  return await axios.delete(`${API_URL}/${movieId}/screenings/${screeningId}`);
+  try {
+    const response = await axios.delete(`${API_URL}/${movieId}/screenings/${screeningId}`);
+    return response.data;
+  } catch (error){
+    console.error(error);
+    throw(error);
+  }
 };
