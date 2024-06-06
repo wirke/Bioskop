@@ -14,6 +14,7 @@ import DeleteMovie from './components/movieDelete';
 
 import BookingsList from './components/bookingList';
 import CreateBooking from './components/bookingCreate';
+import HeaderComponent from './components/headerComponent';
 
 //import AdminComponent from '.components/adminComponent'
 //import HomeComponent from '.components/homeComponent'
