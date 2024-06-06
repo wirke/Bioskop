@@ -33,6 +33,8 @@ const MovieDetail = () => {
     <div>
       <h1>{movie.title}</h1>
       <p>{movie.director}</p>
+      <p>{movie.genre}</p>
+      <p>{movie.releaseDate}</p>
     </div>
   );
 };
