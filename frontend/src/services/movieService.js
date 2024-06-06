@@ -12,9 +12,9 @@ export const getAllMovies = async () => {
   }
 };
 
-export const getMovieById = async (id) => {
+export const getMovieById = async (_id) => {
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${API_URL}/${_id}`);
     return response.data;
   } catch (error) {
     console.error(error);

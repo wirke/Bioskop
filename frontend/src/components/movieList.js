@@ -23,8 +23,8 @@ const MoviesList = () => {
       <h1>Movies List</h1>
       <ul>
         {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+          <li key={movie._id}>
+            <Link to={`/movie/${movie._id}`}>{movie.title}</Link>
           </li>
         ))}
       </ul>

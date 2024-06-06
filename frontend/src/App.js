@@ -15,14 +15,16 @@ import DeleteMovie from './components/movieDelete';
 import BookingsList from './components/bookingList';
 import CreateBooking from './components/bookingCreate';
 
-//import AdminComponent from '.components/adminComponent'
+//import HeaderComponent from '.components/headerComponent'
 //import HomeComponent from '.components/homeComponent'
+//import Login from '.components/loginComponent'
+//import Register from '.components/RegisterCOmponents'
+//import Logout from '.components/Logout'
 
 const App = () => {
   return (
     <Router>
       <Routes>
-
         <Route path="/users" element={<UsersList></UsersList>} />
         <Route path="/user/:id" element={<UserDetail></UserDetail>} />
         <Route path="/create-user" element={<CreateUser></CreateUser>} />
@@ -43,4 +45,7 @@ const App = () => {
 export default App;
 
 //<Route path="/home" element={<HomeComponent></HomeComponent>}/>
-//<Route path="/admin" element={<AdminComponent></AdminComponent>}/>
+//<Route path="/header" element={<HeaderComponent></HeaderComponent>}/>
+//<Route path="/login" element={<Login></Login>}/>
+//<Route path="/register" element={<Register></Register>}/>
+//<Route path="/logout" element={<Logout></Logout>}/>
