@@ -3,7 +3,13 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000/movies';
 
 export const getAllMovies = async () => {
-  return await axios.get(API_URL);
+  try {
+    const response = await axios.get(`${API_URL}`)
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const getMovieById = async (id) => {

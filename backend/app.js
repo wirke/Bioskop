@@ -25,7 +25,7 @@ mongoose.connect(uri, {
   process.exit(1);
 });
 
-app.use(cors)
+app.use(cors())
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'UWDgMIpchpPKEno6CHE3Sz+VNkahW88I9laKOd/ZrBE=',
